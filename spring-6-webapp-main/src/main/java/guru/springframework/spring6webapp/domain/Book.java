@@ -23,6 +23,22 @@ public class Book {
         this.authors = authors;
     }
 
+    @ManyToMany
+    @JoinTable(
+            name = "publisher_book",
+            joinColumns = @JoinColumn(name ="book_id"),
+            inverseJoinColumns = @JoinColumn(name = "publisher_id")
+    )
+    private Set<Publisher> publishers = new HashSet<>();
+
+    public Set<Publisher> getPublishers() {
+        return publishers;
+    }
+
+    public void setPublishers(Set<Publisher> publishers) {
+        this.publishers = publishers;
+    }
+
     public Long getId() {
         return id;
     }
