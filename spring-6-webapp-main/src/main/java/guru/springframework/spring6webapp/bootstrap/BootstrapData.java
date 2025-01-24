@@ -53,6 +53,8 @@ public class BootstrapData implements CommandLineRunner { // when it detects thi
         // null pointer if authors and books are not initialized
         ericSaved.getBooks().add(dddSaved);
         rodSaved.getBooks().add(noEJBSaved);
+        noEJBSaved.getAuthors().add(rodSaved);
+        dddSaved.getAuthors().add(ericSaved);
 
         Publisher publisher = new Publisher();
         publisher.setName("My Publisher");
