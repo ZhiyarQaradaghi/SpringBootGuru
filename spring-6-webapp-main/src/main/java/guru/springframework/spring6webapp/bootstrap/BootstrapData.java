@@ -48,39 +48,26 @@ public class BootstrapData implements CommandLineRunner { // when it detects thi
         Author rodSaved = authorRepository.save(rod);
         Book noEJBSaved = bookRepository.save(noEJB);
 
-        Publisher johny = new Publisher();
-        johny.setName("John Doe");
-        johny.setAddress("Moon");
-        johny.setCity("London");
-        johny.setState("New York");
-        johny.setZip("44000");
-
-        Publisher johnySaved = publisherRepository.save(johny);
-
-        Publisher manny = new Publisher();
-        manny.setName("Manny Doe");
-        manny.setAddress("Mars");
-        manny.setCity("Nova One");
-        manny.setState("Colombia State");
-        manny.setZip("44001");
-
-        Publisher mannySaved = publisherRepository.save(manny);
 
         // association between the 2 authors and the 2 books
-
         // null pointer if authors and books are not initialized
         ericSaved.getBooks().add(dddSaved);
         rodSaved.getBooks().add(noEJBSaved);
-        johnySaved.getBooks().add(noEJBSaved);
-        mannySaved.getBooks().add(dddSaved);
+
+        Publisher publisher = new Publisher();
+        publisher.setName("My Publisher");
+        publisher.setAddress("123 MAIN STREET");
+        Publisher publisherSaved = publisherRepository.save(publisher);
+
+        dddSaved.setPublisher(publisherSaved);
+        noEJBSaved.setPublisher(publisherSaved);
 
         // persist objects so that changes made in the relationship between the 2 are saved in the H2 in memory database
         authorRepository.save(ericSaved);
         authorRepository.save(rodSaved);
         bookRepository.save(dddSaved);
         bookRepository.save(noEJBSaved);
-        publisherRepository.save(mannySaved);
-        publisherRepository.save(johnySaved);
+
 
         System.out.println("In BootStrap");
         System.out.println("Author Count: " + authorRepository.count());
