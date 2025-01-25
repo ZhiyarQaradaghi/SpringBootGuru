@@ -1,2 +1,1 @@
-# SpringBootGuru
- 2025 springboot beginning
+Simple web application built with Spring 
